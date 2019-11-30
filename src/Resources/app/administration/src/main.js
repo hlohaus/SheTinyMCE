@@ -18,12 +18,12 @@ Component.override('sw-text-editor', {
 
         onMediaSelectionChange(mediaItems) {
             mediaItems.forEach((item) => {
-                this.filePickerCallback(item.url);
+                this.filePickerCallback(item.url, { alt: item.translated.alt });
             });
         },
 
         onChange(e) {
-            this.emitHtmlContent(e.target.getBody().innerHTML);
+            this.emitHtmlContent(e.target.getContent());
         }
     },
 
@@ -56,19 +56,13 @@ Component.override('sw-text-editor', {
             toolbar_sticky: true,
             image_advtab: true,
             content_css: [],
-            link_list: [
-                { title: 'My page 1', value: 'http://www.tinymce.com' },
-                { title: 'My page 2', value: 'http://www.moxiecode.com' }
-            ],
-            image_list: [
-                { title: 'My page 1', value: 'http://www.tinymce.com' },
-                { title: 'My page 2', value: 'http://www.moxiecode.com' }
-            ],
             image_class_list: [
                 { title: 'None', value: '' },
                 { title: 'Some class', value: 'class-name' }
             ],
+            browser_spellcheck: true,
             importcss_append: true,
+            autosave_ask_before_unload: false,
             file_picker_callback: function (callback) {
                 /* Provide file and text for the link dialog */
                 me.mediaModalIsOpen = true;
