@@ -52,7 +52,7 @@ Component.override('sw-text-editor', {
                 language: lang.substring(0, 2),
                 skin: window.tinymceConfig['SheTinyMce.config.skin'] || 'oxide',
                 height: window.tinymceConfig['SheTinyMce.config.height'] || 300,
-                plugins: 'print preview paste importcss searchreplace autolink' +
+                plugins: 'iconfonts print preview paste importcss searchreplace autolink' +
                 ' autosave save directionality code visualblocks visualchars' +
                 ' fullscreen image link media template codesample table charmap' +
                 ' hr pagebreak nonbreaking anchor toc insertdatetime advlist' +
@@ -98,7 +98,7 @@ Component.override('sw-text-editor', {
                 init_instance_callback: function (editor) {
                     editor.on('Change', me.onChange);
                 },
-                extended_valid_elements: 'script[src|async|defer|type|charset]'
+                extended_valid_elements: 'script[src|async|defer|type|charset|crossorigin]'
             });
         }
     },
