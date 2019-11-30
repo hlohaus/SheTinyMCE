@@ -1,0 +1,7 @@
+{% sw_extends 'administration/index.html.twig' %}
+
+{% block administration_templates %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ baseUrl }}{{ asset('bundles/shetinymce/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ baseUrl }}{{ asset('bundles/shetinymce/administration/js/she-tiny-mce.js') }}"></script>
+{% endblock %}

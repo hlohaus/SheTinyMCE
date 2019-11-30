@@ -1,0 +1,32 @@
+{
+    "name": "she/tiny-mce",
+    "description": "S.HE TinyMCE",
+    "version": "v1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "S.HE Business GmbH"
+        }
+    ],
+    "require": {
+        "shopware/core": "*",
+        "shopware/administration": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "She\\TinyMCE\\SheTinyMCE",
+        "label": {
+            "de-DE": "S.HE TinyMCE",
+            "en-GB": "S.HE TinyMCE"
+        },
+        "description": {
+            "de-DE": "TinyMCE for Shopware 6",
+            "en-GB": "TinyMCE für Shopware 6"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "She\\TinyMCE\\": "src/"
+        }
+    }
+}
