@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace She\TinyMCE;
+namespace She\TinyMce;
 
 use Shopware\Core\Framework\Plugin;
 
-class SheTinyMCE extends Plugin
+class SheTinyMce extends Plugin
 {
 }

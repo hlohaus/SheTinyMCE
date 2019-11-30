@@ -14,7 +14,7 @@
         "shopware/administration": "*"
     },
     "extra": {
-        "shopware-plugin-class": "She\\TinyMCE\\SheTinyMCE",
+        "shopware-plugin-class": "She\\TinyMce\\SheTinyMce",
         "label": {
             "de-DE": "S.HE TinyMCE",
             "en-GB": "S.HE TinyMCE"
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "She\\TinyMCE\\": "src/"
+            "She\\TinyMce\\": "src/"
         }
     }
 }
