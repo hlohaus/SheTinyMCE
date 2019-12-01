@@ -44,10 +44,14 @@ Component.override('sw-text-editor', {
         },
 
         loadTiny() {
-            const me = this;
             const lang = window.localStorage.getItem('sw-admin-locale') || 'en';
             const contentCss = window.tinymceConfig['SheTinyMce.config.contentcss'];
-            window.tinymce.init({
+            window.tinymce.init(this.getTinyMceConfig(lang, contentCss));
+        },
+
+        getTinyMceConfig: function (lang, contentCss) {
+            const me = this;
+            return {
                 target: this.$refs.textArea,
                 language: lang.substring(0, 2),
                 skin: window.tinymceConfig['SheTinyMce.config.skin'] || 'oxide',
@@ -70,10 +74,11 @@ Component.override('sw-text-editor', {
                 toolbar_sticky: true,
                 image_advtab: true,
                 content_css: contentCss ? contentCss.split(/\n/) : [],
-                image_class_list: [
-                    { title: 'None', value: '' },
-                    { title: 'Some class', value: 'class-name' }
-                ],
+                image_class_list: [{
+                        title: 'None', value: ''
+                    }, {
+                        title: 'Some class', value: 'class-name'
+                }],
                 browser_spellcheck: !!window.tinymceConfig['SheTinyMce.config.spellcheck'],
                 importcss_append: true,
                 autosave_ask_before_unload: false,
@@ -85,8 +90,13 @@ Component.override('sw-text-editor', {
                     me.filePickerMeta = meta;
                 },
                 templates: [
-                    { title: 'New Table', description: 'creates a new table', content: '' },
-                    { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' }
+                    {
+                        title: 'New Table', description: 'creates a new table', content: ''
+                    }, {
+                        title: 'Starting my story',
+                        description: 'A cure for writers block',
+                        content: 'Once upon a time...'
+                    }
                 ],
                 template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
                 template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
@@ -99,7 +109,7 @@ Component.override('sw-text-editor', {
                     editor.on('Change', me.onChange);
                 },
                 extended_valid_elements: 'script[src|async|defer|type|charset|crossorigin]'
-            });
+            };
         }
     },
 
