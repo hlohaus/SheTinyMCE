@@ -44,7 +44,7 @@ Component.override('sw-text-editor', {
         },
 
         loadTiny() {
-            const lang = window.localStorage.getItem('sw-admin-locale') || 'en';
+            const lang = Shopware.Application.getContainer('factory').locale.getLastKnownLocale();
             const contentCss = window.tinymceConfig['SheTinyMce.config.contentcss'];
             window.tinymce.init(this.getTinyMceConfig(lang, contentCss));
         },
@@ -75,9 +75,9 @@ Component.override('sw-text-editor', {
                 image_advtab: true,
                 content_css: contentCss ? contentCss.split(/\n/) : [],
                 image_class_list: [{
-                        title: 'None', value: ''
-                    }, {
-                        title: 'Some class', value: 'class-name'
+                    title: 'None', value: ''
+                }, {
+                    title: 'Some class', value: 'class-name'
                 }],
                 browser_spellcheck: !!window.tinymceConfig['SheTinyMce.config.spellcheck'],
                 importcss_append: true,
