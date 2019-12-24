@@ -2,7 +2,14 @@
 
 {% block administration_templates %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/shetinymce//administration/css/she-tiny-mce.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/shetinymce/administration/css/she-tiny-mce.css') }}">
+{% if sheTinyMce.config.apiKey %}
+    <script src="https://cdn.tiny.cloud/1/{{ sheTinyMce.config.apiKey }}/tinymce/5/tinymce.min.js"></script>
+{% else %}
     <script type="text/javascript" src="{{ asset('bundles/shetinymce/tinymce/tinymce.min.js') }}"></script>
+{% endif  %}
     <script type="text/javascript" src="{{ asset('bundles/shetinymce/administration/js/she-tiny-mce.js') }}"></script>
+    <script>
+        var tinymceConfig = {{ sheTinyMce.config|json_encode|raw }}
+    </script>
 {% endblock %}

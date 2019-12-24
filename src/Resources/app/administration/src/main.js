@@ -51,17 +51,26 @@ Component.override('sw-text-editor', {
 
         getTinyMceConfig: function (lang, contentCss) {
             const me = this;
+            const plugins = window.tinymceConfig.enablePro ?
+                'print preview fullpage powerpaste casechange importcss' +
+                ' searchreplace autolink autosave save directionality' +
+                ' advcode visualblocks visualchars fullscreen image link media mediaembed' +
+                ' template codesample table charmap hr pagebreak nonbreaking anchor' +
+                ' toc insertdatetime advlist lists checklist wordcount tinymcespellchecker' +
+                ' a11ychecker imagetools textpattern noneditable help formatpainter permanentpen' +
+                ' pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable' :
+                'iconfonts print preview paste importcss searchreplace autolink' +
+                ' autosave save directionality code visualblocks visualchars' +
+                ' fullscreen image link media template codesample table charmap' +
+                ' hr pagebreak nonbreaking anchor toc insertdatetime advlist' +
+                ' lists wordcount imagetools textpattern noneditable help charmap' +
+                ' quickbars emoticons';
             return {
                 target: this.$refs.textArea,
                 language: lang.substring(0, 2),
                 skin: window.tinymceConfig['SheTinyMce.config.skin'] || 'oxide',
                 height: window.tinymceConfig['SheTinyMce.config.height'] || 300,
-                plugins: 'iconfonts print preview paste importcss searchreplace autolink' +
-                ' autosave save directionality code visualblocks visualchars' +
-                ' fullscreen image link media template codesample table charmap' +
-                ' hr pagebreak nonbreaking anchor toc insertdatetime advlist' +
-                ' lists wordcount imagetools textpattern noneditable help charmap' +
-                ' quickbars emoticons',
+                plugins: plugins,
                 menubar: 'file edit view insert format tools table help',
                 toolbar: 'undo redo | bold italic underline strikethrough |' +
                 ' fontselect fontsizeselect formatselect |' +
@@ -83,6 +92,7 @@ Component.override('sw-text-editor', {
                 importcss_append: true,
                 autosave_ask_before_unload: false,
                 relative_urls: false,
+                tinycomments_mode: 'embedded',
                 file_picker_callback: function (callback, value, meta) {
                     /* Provide file and text for the link dialog */
                     me.mediaModalIsOpen = true;

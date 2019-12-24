@@ -37,5 +37,15 @@
             <label>Additional CSS files</label>
             <label lang="de-DE">Zusätzliche CSS-Dateien</label>
         </input-field>
+        <input-field>
+            <name>apiKey</name>
+            <label>API Key</label>
+            <label lang="de-DE">API Key</label>
+        </input-field>
+        <input-field type="bool">
+            <name>enablePro</name>
+            <label>Enable pro</label>
+            <label lang="de-DE">Pro aktivieren</label>
+        </input-field>
     </card>
 </config>
