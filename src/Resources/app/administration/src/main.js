@@ -45,7 +45,7 @@ Component.override('sw-text-editor', {
 
         loadTiny() {
             const lang = Shopware.Application.getContainer('factory').locale.getLastKnownLocale();
-            const contentCss = window.tinymceConfig['SheTinyMce.config.contentcss'];
+            const contentCss = window.tinymceConfig.contentcss;
             window.tinymce.init(this.getTinyMceConfig(lang, contentCss));
         },
 
@@ -68,8 +68,8 @@ Component.override('sw-text-editor', {
             return {
                 target: this.$refs.textArea,
                 language: lang.substring(0, 2),
-                skin: window.tinymceConfig['SheTinyMce.config.skin'] || 'oxide',
-                height: window.tinymceConfig['SheTinyMce.config.height'] || 300,
+                skin: window.tinymceConfig.skin || 'oxide',
+                height: window.tinymceConfig.height || 300,
                 plugins: plugins,
                 menubar: 'file edit view insert format tools table help',
                 toolbar: 'undo redo | bold italic underline strikethrough |' +
@@ -88,7 +88,7 @@ Component.override('sw-text-editor', {
                 }, {
                     title: 'Some class', value: 'class-name'
                 }],
-                browser_spellcheck: !!window.tinymceConfig['SheTinyMce.config.spellcheck'],
+                browser_spellcheck: !!window.tinymceConfig.spellcheck,
                 importcss_append: true,
                 autosave_ask_before_unload: false,
                 relative_urls: false,
@@ -114,12 +114,21 @@ Component.override('sw-text-editor', {
                 quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
                 noneditable_noneditable_class: 'mceNonEditable',
                 toolbar_drawer: 'sliding',
-                contextmenu: window.tinymceConfig['SheTinyMce.config.spellcheck'] ? false : 'link image imagetools table',
+                contextmenu: window.tinymceConfig.spellcheck ? false : 'link image imagetools table',
                 init_instance_callback: function (editor) {
                     editor.on('Change', me.onChange);
                 },
                 extended_valid_elements: 'script[src|async|defer|type|charset|crossorigin]'
             };
+        },
+
+        mapValues: function (values) {
+            const config = {};
+            Object.keys(values).forEach(key => {
+                const newKey = key.replace('SheTinyMce.config.', '');
+                config[newKey] = values[key];
+            });
+            return config;
         }
     },
 
@@ -130,7 +139,7 @@ Component.override('sw-text-editor', {
         }
         if (!window.tinymceConfig) {
             this.readAll().then((values) => {
-                window.tinymceConfig = values;
+                window.tinymceConfig = this.mapValues(values);
                 this.loadTiny();
             });
         } else {

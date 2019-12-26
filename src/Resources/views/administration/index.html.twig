@@ -10,6 +10,6 @@
 {% endif  %}
     <script type="text/javascript" src="{{ asset('bundles/shetinymce/administration/js/she-tiny-mce.js') }}"></script>
     <script>
-        var tinymceConfig = {{ sheTinyMce.config|json_encode|raw }}
+        var tinymceConfig = {{ sheTinyMce.config|json_encode|raw }};
     </script>
 {% endblock %}
