@@ -1,4 +1,4 @@
-import { Component } from 'src/core/shopware';
+const { Component } = Shopware;
 import template from './extension/sw-tinymce.html.twig';
 import './sw-tinymce.scss';
 
