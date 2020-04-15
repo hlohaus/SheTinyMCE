@@ -8,7 +8,7 @@
 {% else %}
     <script type="text/javascript" src="{{ asset('bundles/shetinymce/tinymce/tinymce.min.js') }}"></script>
 {% endif  %}
-    <script type="text/javascript" src="{{ asset('bundles/shetinymce/administration/js/she-tiny-mce.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/shetinymce/administration/js/she-tiny-mce.js') }}" defer></script>
     <script>
         var tinymceConfig = {{ sheTinyMce.config|json_encode|raw }};
     </script>
