@@ -1,7 +1,7 @@
 {
     "name": "she/tiny-mce",
     "description": "S.HE TinyMCE",
-    "version": "v1.2.0",
+    "version": "v1.2.1",
     "type": "shopware-platform-plugin",
     "license": "Proprietary",
     "authors": [
